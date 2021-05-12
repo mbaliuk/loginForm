@@ -33,6 +33,14 @@ class AccountController: UIViewController, AccountEventsDelegate {
         accountViewModel.loadData()
     }
     
+    override func viewDidAppear(_: Bool) {
+        setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+    
     func accountViewModel_DataCallback(first_name: String, last_name: String, avatar: UIImage?, email: String) {
         
         nameLabel.text = first_name + " " + last_name

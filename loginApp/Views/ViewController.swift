@@ -68,6 +68,8 @@ class ViewController: UIViewController, LoginEventsDelegate {
         view.endEditing(true)
     }
     
+    // --- Override
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,8 +87,15 @@ class ViewController: UIViewController, LoginEventsDelegate {
         if loginViewModel.alreadyLogged() {
             performSegue(withIdentifier: "accountControllerSegue", sender: nil)
         }
+        
+        setNeedsStatusBarAppearanceUpdate()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+
+    // --- Callback
     func loginViewModel_LoginCallback(status: LoginStatus) {
         if status == LoginStatus.success {
             errorLoginLabel.isHidden = true
